@@ -53,9 +53,6 @@ app.post("/compose", function (req, res) {
   res.redirect("/");
 });
 
-var div = document.getElementById("target");
-div.textContent = ellipsify(div.textContent);
-
 app.get("/posts/:topic", function (req, res) {
   const reqTitle = _lower.case(req.params.topic);
 
