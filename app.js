@@ -4,6 +4,7 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const ejs = require("ejs");
 const { render } = require("ejs");
+var _ = require("lodash");
 let posts = [];
 
 const homeStartingContent =
@@ -50,6 +51,21 @@ app.post("/compose", function (req, res) {
   };
   posts.push(post);
   res.redirect("/");
+});
+
+var div = document.getElementById("target");
+div.textContent = ellipsify(div.textContent);
+
+app.get("/posts/:topic", function (req, res) {
+  const reqTitle = _lower.case(req.params.topic);
+
+  posts.forEach(function (post) {
+    const storedTitle = post.title;
+
+    if (reqTitle == storedTitle) {
+      console.log("success");
+    } else console.log("not matched");
+  });
 });
 
 app.listen(3000, function () {
