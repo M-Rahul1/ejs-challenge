@@ -54,7 +54,7 @@ app.post("/compose", function (req, res) {
 });
 
 app.get("/posts/:topic", function (req, res) {
-  const reqTitle = _lower.case(req.params.topic);
+  const reqTitle = req.params.topic;
 
   posts.forEach(function (post) {
     const storedTitle = post.title;
